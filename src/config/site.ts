@@ -1,6 +1,6 @@
 export const site = {
   name: "Immortals",
-  tagline: "The great literature of India",
+  tagline: "The makers of Indian literature",
   description:
     "A guide to the writers who built literature in India — across Sanskrit, Tamil, Bengali, Hindi, Urdu, Kannada, Malayalam, Telugu, Marathi, Odia, Gujarati, Punjabi and English.",
 } as const;

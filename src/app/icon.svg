@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Immortals">
+  <rect width="32" height="32" rx="7" fill="#a8410f" />
+  <g fill="#f8f4ec">
+    <rect x="9" y="8" width="14" height="2.6" rx="0.5" />
+    <rect x="14.2" y="8" width="3.6" height="16" />
+    <rect x="9" y="21.4" width="14" height="2.6" rx="0.5" />
+  </g>
+</svg>
