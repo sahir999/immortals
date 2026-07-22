@@ -70,8 +70,24 @@ export default function AboutPage() {
           <p>
             Quoted lines appear in English. Translating a Kural couplet or a
             Ghalib sher costs most of what makes it worth quoting, so these are
-            offered as an indication of sense, not as a substitute for the
-            original.
+            offered as an indication of sense, not as a published translation.
+            Where a verse is numbered, the numbering follows the standard
+            edition &mdash; Kural 571 for the couplet on compassion, vachana 820
+            in Ramanujan&rsquo;s ordering for Basavanna &mdash; though editions
+            differ. Valmiki&rsquo;s line is a gloss on the traditional account
+            of the first shloka, not a quotation from the text.
+          </p>
+
+          <h2 className="pt-6 font-serif text-2xl text-foreground">
+            Where disagreement is visible
+          </h2>
+          <p>
+            Ismat Chughtai&rsquo;s birth year is given as 1911 or 1915 because
+            sources genuinely split on it. Thakazhi&rsquo;s 1984 Jnanpith is
+            listed without a work, since the citation is recorded variously as{" "}
+            <em>Kayar</em> and <em>Oru Desathinte Katha</em>. Award years were
+            checked against the Jnanpith and Sahitya Akademi records; anything
+            that could not be corroborated was removed rather than kept.
           </p>
         </div>
 

@@ -115,9 +115,9 @@ export const honourCategories: {
   },
   {
     key: "sahitya-akademi",
-    label: "Sahitya Akademi Award",
+    label: "Sahitya Akademi Award & Fellowship",
     blurb:
-      "The national academy's annual award, given separately in each of twenty-four languages.",
+      "The national academy's annual award, given separately in each of twenty-four languages — and its Fellowship, reserved for lifetime achievement.",
   },
   {
     key: "padma",
@@ -226,7 +226,7 @@ export const writers: Writer[] = [
     honourKeys: [],
     quote: {
       text: "It is compassion, the most gracious of virtues, which moves the world.",
-      source: "Tirukkural, Kural 25",
+      source: "Tirukkural, Kural 571",
     },
     featured: true,
   },
@@ -697,9 +697,11 @@ export const writers: Writer[] = [
       },
     ],
     honours: [
+      "Padma Bhushan (1958)",
+      "Rashtrakavi (1964)",
       "Jnanpith Award (1967) — the first for Kannada",
       "Padma Vibhushan (1988)",
-      "Rashtrakavi (1964)",
+      "Karnataka Ratna (1992)",
     ],
     honourKeys: ["jnanpith", "padma"],
   },
@@ -724,7 +726,10 @@ export const writers: Writer[] = [
       { title: "Two Leaves and a Bud", year: "1937" },
       { title: "The Village", year: "1939", note: "First of the Lalu trilogy" },
     ],
-    honours: ["Sahitya Akademi Award (1971)", "Padma Bhushan (1967)"],
+    honours: [
+      "Padma Bhushan (1967)",
+      "Sahitya Akademi Award (1971), for Morning Face",
+    ],
     honourKeys: ["sahitya-akademi", "padma"],
   },
   {
@@ -750,8 +755,10 @@ export const writers: Writer[] = [
     ],
     honours: [
       "Sahitya Akademi Award (1960)",
-      "Padma Vibhushan (2000)",
+      "Padma Bhushan (1964)",
       "AC Benson Medal, Royal Society of Literature (1980)",
+      "Sahitya Akademi Fellowship (1994)",
+      "Padma Vibhushan (2000)",
     ],
     honourKeys: ["sahitya-akademi", "padma"],
     featured: true,
@@ -772,14 +779,15 @@ export const writers: Writer[] = [
       "One of the four pillars of Chhayavad, and Hindi's first great feminist essayist.",
     bio: "Mahadevi wrote lyric poetry of longing so controlled it was compared to Mirabai's, then wrote prose sketches of the women around her that quietly indicted everything about their circumstances. She ran a women's college in Prayagraj for decades while doing both.",
     works: [
-      { title: "Yama", year: "1940", note: "Jnanpith Award, 1982" },
+      { title: "Yama", year: "1939", note: "Jnanpith Award, 1982" },
       { title: "Neerja", year: "1934" },
       { title: "Deepshikha", year: "1942" },
       { title: "Shrinkhala ki Kadiyan", note: "Essays on women" },
     ],
     honours: [
       "Jnanpith Award (1982)",
-      "Sahitya Akademi Award (1979)",
+      "Sahitya Akademi Fellowship (1979)",
+      "Padma Bhushan (1956)",
       "Padma Vibhushan (1988)",
     ],
     honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
@@ -805,8 +813,12 @@ export const writers: Writer[] = [
       { title: "Ntuppuppakkoranendarnnu", year: "1951" },
       { title: "Mathilukal", year: "1965", note: "Walls" },
     ],
-    honours: ["Padma Shri (1982)", "Sahitya Akademi Fellowship (1970)"],
-    honourKeys: ["padma"],
+    honours: [
+      "Sahitya Akademi Fellowship (1970)",
+      "Kerala Sahitya Akademi Fellowship (1981)",
+      "Padma Shri (1982)",
+    ],
+    honourKeys: ["sahitya-akademi", "padma"],
   },
   {
     slug: "ramdhari-singh-dinkar",
@@ -863,8 +875,9 @@ export const writers: Writer[] = [
     honours: [
       "Jnanpith Award (1976) — the first woman to receive it",
       "Padma Shri (1976)",
+      "Sahitya Akademi Fellowship (1994)",
     ],
-    honourKeys: ["jnanpith", "padma"],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
   },
   {
     slug: "umashankar-joshi",
@@ -887,11 +900,11 @@ export const writers: Writer[] = [
       { title: "Prachina", year: "1944" },
     ],
     honours: [
-      "Jnanpith Award (1967)",
+      "Jnanpith Award (1967), shared with Kuvempu",
       "Sahitya Akademi Award (1973)",
-      "Padma Bhushan (1979)",
+      "Ranjitram Suvarna Chandrak (1939)",
     ],
-    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+    honourKeys: ["jnanpith", "sahitya-akademi"],
   },
   {
     slug: "saadat-hasan-manto",
@@ -936,10 +949,15 @@ export const writers: Writer[] = [
     forms: ["Novel", "Short story"],
     knownFor:
       "Chemmeen — a fishing-village tragedy that is among the most celebrated novels written in Malayalam.",
-    bio: "Thakazhi wrote about labourers, fisherfolk and the land itself with a documentary patience that turned into epic in Kayar, his four-generation novel of land tenure in Kerala. Chemmeen made him internationally read; Kayar won him the Jnanpith.",
+    bio: "Thakazhi wrote about labourers, fisherfolk and the land itself with a documentary patience that turned into epic in Kayar, his four-generation novel of land tenure in Kerala. Chemmeen made him internationally read; the Jnanpith followed in 1984.",
     works: [
-      { title: "Chemmeen", year: "1956", note: "Shrimp" },
-      { title: "Kayar", year: "1978", note: "Coir — Jnanpith Award, 1984" },
+      {
+        title: "Chemmeen",
+        year: "1956",
+        note: "Shrimp — Sahitya Akademi Award, 1957",
+      },
+      { title: "Kayar", year: "1978", note: "Coir" },
+      { title: "Oru Desathinte Katha", year: "1971" },
       { title: "Randidangazhi", year: "1948", note: "Two Measures" },
     ],
     honours: [
@@ -963,9 +981,14 @@ export const writers: Writer[] = [
     forms: ["Novel", "Short story"],
     knownFor:
       "Paraja and Amrutara Santana — among the first serious fiction about India's tribal communities written from inside their lives.",
-    bio: "As a civil servant posted to the Koraput hills, Mohanty learned local dialects and wrote novels about people Indian literature had until then only described from outside. Amrutara Santana brought Odia its first Jnanpith.",
+    bio: "As a civil servant posted to the Koraput hills, Mohanty learned local dialects and wrote novels about people Indian literature had until then only described from outside. Amrutara Santana took the very first Sahitya Akademi Award in 1955; Mati Matala brought Odia its first Jnanpith.",
     works: [
-      { title: "Amrutara Santana", year: "1949", note: "Jnanpith Award, 1973" },
+      {
+        title: "Amrutara Santana",
+        year: "1949",
+        note: "Sahitya Akademi Award, 1955",
+      },
+      { title: "Mati Matala", note: "Jnanpith Award, 1973" },
       { title: "Paraja", year: "1945" },
       { title: "Danapani", year: "1955" },
     ],
@@ -981,8 +1004,8 @@ export const writers: Writer[] = [
     name: "Ismat Chughtai",
     nativeName: "عصمت چغتائی",
     epithet: "Lady Changez Khan",
-    lifespan: "1915 – 1991",
-    sortYear: 1915,
+    lifespan: "1911 or 1915 – 1991",
+    sortYear: 1913,
     language: "Urdu",
     languages: ["Urdu"],
     region: "Uttar Pradesh & Bombay",
@@ -1024,7 +1047,8 @@ export const writers: Writer[] = [
     ],
     honours: [
       "Jnanpith Award (1981)",
-      "Sahitya Akademi Award (1956) — the first woman to receive it",
+      "Sahitya Akademi Award (1956) — the first woman awarded for Punjabi",
+      "Padma Shri (1969)",
       "Padma Vibhushan (2004)",
     ],
     honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
@@ -1092,8 +1116,9 @@ export const writers: Writer[] = [
       { title: "Stanadayini", note: "Breast-Giver" },
     ],
     honours: [
+      "Sahitya Akademi Award (1979), for Aranyer Adhikar",
+      "Padma Shri (1986)",
       "Jnanpith Award (1996)",
-      "Sahitya Akademi Award (1979)",
       "Ramon Magsaysay Award (1997)",
       "Padma Vibhushan (2006)",
     ],
@@ -1180,9 +1205,10 @@ export const writers: Writer[] = [
       { title: "The Night Train at Deoli", year: "1988" },
     ],
     honours: [
-      "Sahitya Akademi Award (1992)",
-      "Padma Bhushan (2014)",
       "John Llewellyn Rhys Prize (1957)",
+      "Sahitya Akademi Award (1992)",
+      "Padma Shri (1999)",
+      "Padma Bhushan (2014)",
     ],
     honourKeys: ["sahitya-akademi", "padma"],
   },
