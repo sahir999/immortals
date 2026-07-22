@@ -1,0 +1,1298 @@
+/**
+ * The dataset that powers the whole site.
+ *
+ * Every figure here shaped literature written in India — from the Sanskrit and
+ * Tamil classics through the bhakti singers, the colonial-era renaissance, the
+ * modern Indian-language masters, and the contemporary voices writing now.
+ */
+
+export type EraKey =
+  | "classical"
+  | "bhakti"
+  | "renaissance"
+  | "modern"
+  | "contemporary";
+
+export type HonourKey =
+  | "nobel"
+  | "booker"
+  | "jnanpith"
+  | "sahitya-akademi"
+  | "padma";
+
+export type Work = {
+  title: string;
+  year?: string;
+  note?: string;
+};
+
+export type Writer = {
+  slug: string;
+  name: string;
+  nativeName?: string;
+  epithet: string;
+  lifespan: string;
+  /** Approximate birth year, negative for BCE. Used only for ordering. */
+  sortYear: number;
+  language: string;
+  languages: string[];
+  region: string;
+  era: EraKey;
+  forms: string[];
+  knownFor: string;
+  bio: string;
+  works: Work[];
+  honours: string[];
+  honourKeys: HonourKey[];
+  quote?: { text: string; source?: string };
+  featured?: boolean;
+};
+
+export const eras: {
+  key: EraKey;
+  label: string;
+  span: string;
+  blurb: string;
+}[] = [
+  {
+    key: "classical",
+    label: "The Classical Age",
+    span: "c. 500 BCE – 1200 CE",
+    blurb:
+      "Sanskrit epic and court poetry alongside the Tamil Sangam and post-Sangam classics — the foundation everything after it argues with.",
+  },
+  {
+    key: "bhakti",
+    label: "Bhakti & the Vernaculars",
+    span: "c. 1100 – 1700",
+    blurb:
+      "Poets abandoned Sanskrit for the languages people actually spoke, and turned devotion into the most democratic literature India had produced.",
+  },
+  {
+    key: "renaissance",
+    label: "The Renaissance",
+    span: "c. 1800 – 1930",
+    blurb:
+      "Print, prose fiction and nationalism arrived together. The novel, the modern short story and the political poem were all built in these decades.",
+  },
+  {
+    key: "modern",
+    label: "The Modern Masters",
+    span: "c. 1930 – 1990",
+    blurb:
+      "Partition, independence and a reckoning with caste produced a literature of enormous range across a dozen languages at once.",
+  },
+  {
+    key: "contemporary",
+    label: "Contemporary Voices",
+    span: "1990 – today",
+    blurb:
+      "Indian writing became a global event without leaving home — in English, and in translation from Hindi, Malayalam, Bengali and Tamil.",
+  },
+];
+
+export const honourCategories: {
+  key: HonourKey;
+  label: string;
+  blurb: string;
+}[] = [
+  {
+    key: "nobel",
+    label: "Nobel Prize in Literature",
+    blurb: "The only laureate writing from India — and the first from Asia.",
+  },
+  {
+    key: "booker",
+    label: "The Booker Prizes",
+    blurb:
+      "Including the International Booker, which crossed into Indian-language writing in 2022.",
+  },
+  {
+    key: "jnanpith",
+    label: "Jnanpith Award",
+    blurb:
+      "India's highest literary honour, given for a body of work in any of the scheduled languages.",
+  },
+  {
+    key: "sahitya-akademi",
+    label: "Sahitya Akademi Award",
+    blurb:
+      "The national academy's annual award, given separately in each of twenty-four languages.",
+  },
+  {
+    key: "padma",
+    label: "Padma Honours",
+    blurb:
+      "Civilian honours of the Republic — Padma Shri, Padma Bhushan and Padma Vibhushan.",
+  },
+];
+
+export const writers: Writer[] = [
+  // ── Classical ────────────────────────────────────────────────────────────
+  {
+    slug: "valmiki",
+    name: "Valmiki",
+    nativeName: "वाल्मीकि",
+    epithet: "Adi Kavi — the first poet",
+    lifespan: "c. 5th–4th century BCE",
+    sortYear: -450,
+    language: "Sanskrit",
+    languages: ["Sanskrit"],
+    region: "Northern India",
+    era: "classical",
+    forms: ["Epic", "Poetry"],
+    knownFor:
+      "Composing the Ramayana and, with it, the shloka metre that Sanskrit poetry would use for two thousand years.",
+    bio: "Tradition holds that Valmiki invented the shloka spontaneously, in grief, on seeing a hunter shoot a krauncha bird mid-courtship — the first verse in Sanskrit born out of sorrow rather than ritual. The Ramayana he built from it runs to some 24,000 verses and became the template for narrative poetry across South and Southeast Asia.",
+    works: [
+      { title: "Ramayana", note: "Seven kandas, c. 24,000 shlokas" },
+      { title: "Yoga Vasishtha", note: "Attributed" },
+    ],
+    honours: ["Revered as the first poet of the Sanskrit tradition"],
+    honourKeys: [],
+    quote: {
+      text: "Sorrow became song. From grief, the metre was born.",
+      source: "On the origin of the shloka, Ramayana, Bala Kanda",
+    },
+    featured: true,
+  },
+  {
+    slug: "vyasa",
+    name: "Vyasa",
+    nativeName: "व्यास",
+    epithet: "Compiler of the Mahabharata",
+    lifespan: "c. 4th century BCE (traditional)",
+    sortYear: -400,
+    language: "Sanskrit",
+    languages: ["Sanskrit"],
+    region: "Northern India",
+    era: "classical",
+    forms: ["Epic", "Philosophy"],
+    knownFor:
+      "The Mahabharata — at roughly 100,000 verses, the longest poem ever composed — and the Bhagavad Gita inside it.",
+    bio: "Krishna Dvaipayana Vyasa is credited with arranging the Vedas into their four collections and composing the Mahabharata, in which he also appears as a character. The epic absorbed centuries of material into a single moral argument about duty, kinship and war that Indian literature has never stopped rewriting.",
+    works: [
+      { title: "Mahabharata", note: "Includes the Bhagavad Gita" },
+      { title: "The Puranas", note: "Traditionally attributed" },
+    ],
+    honours: ["Traditionally credited with arranging the Vedas"],
+    honourKeys: [],
+    featured: true,
+  },
+  {
+    slug: "kalidasa",
+    name: "Kalidasa",
+    nativeName: "कालिदास",
+    epithet: "The master of Sanskrit drama",
+    lifespan: "c. 4th–5th century CE",
+    sortYear: 400,
+    language: "Sanskrit",
+    languages: ["Sanskrit"],
+    region: "Ujjain, Gupta empire",
+    era: "classical",
+    forms: ["Drama", "Poetry"],
+    knownFor:
+      "Abhijnanashakuntalam and Meghaduta — the high-water mark of Sanskrit drama and lyric.",
+    bio: "Almost nothing certain is known about Kalidasa's life, and everything about his craft. His plays and poems married feeling to landscape so completely that a cloud carrying a lover's message became the most imitated conceit in Indian poetry. Goethe's astonished response to a German Shakuntala in 1791 opened European Romanticism to Sanskrit.",
+    works: [
+      { title: "Abhijnanashakuntalam", note: "The Recognition of Shakuntala" },
+      { title: "Meghaduta", note: "The Cloud Messenger" },
+      { title: "Raghuvamsha" },
+      { title: "Kumarasambhava" },
+      { title: "Vikramorvashiyam" },
+      { title: "Ritusamhara" },
+    ],
+    honours: ["Counted among the nine gems of Vikramaditya's court"],
+    honourKeys: [],
+    featured: true,
+  },
+  {
+    slug: "thiruvalluvar",
+    name: "Thiruvalluvar",
+    nativeName: "திருவள்ளுவர்",
+    epithet: "The poet of the Kural",
+    lifespan: "c. 4th century BCE – 5th century CE",
+    sortYear: -200,
+    language: "Tamil",
+    languages: ["Tamil"],
+    region: "Tamil country",
+    era: "classical",
+    forms: ["Aphorism", "Ethics"],
+    knownFor:
+      "The Tirukkural — 1,330 couplets on virtue, wealth and love that belong to no religion and exclude no reader.",
+    bio: "The Kural compresses an entire ethics into two-line verses of seven words, arranged in 133 chapters of ten. Its refusal to name a god or a caste is why it has been claimed with equal conviction by Jains, Shaivites, Christians and atheists, and why it remains the most translated Tamil text in the world.",
+    works: [{ title: "Tirukkural", note: "1,330 couplets in three books" }],
+    honours: ["The most widely translated work of Tamil literature"],
+    honourKeys: [],
+    quote: {
+      text: "It is compassion, the most gracious of virtues, which moves the world.",
+      source: "Tirukkural, Kural 25",
+    },
+    featured: true,
+  },
+  {
+    slug: "ilango-adigal",
+    name: "Ilango Adigal",
+    nativeName: "இளங்கோ அடிகள்",
+    epithet: "Author of the anklet epic",
+    lifespan: "c. 2nd–5th century CE",
+    sortYear: 250,
+    language: "Tamil",
+    languages: ["Tamil"],
+    region: "Chera country",
+    era: "classical",
+    forms: ["Epic", "Poetry"],
+    knownFor:
+      "Silappadikaram, the first Tamil epic, and its heroine Kannagi — literature's great figure of a woman's justice against a king.",
+    bio: "A Chera prince who became a Jain ascetic, Ilango Adigal wrote an epic whose protagonists are a merchant, his wife and a courtesan rather than gods or warriors. When Kannagi proves her husband was wrongly executed and burns Madurai in her rage, Tamil literature acquires its most enduring image of moral authority held by the powerless.",
+    works: [{ title: "Silappadikaram", note: "The Tale of an Anklet" }],
+    honours: ["One of the five great epics of Tamil literature"],
+    honourKeys: [],
+  },
+  {
+    slug: "jayadeva",
+    name: "Jayadeva",
+    nativeName: "जयदेव",
+    epithet: "Poet of the Gita Govinda",
+    lifespan: "c. 1170 – 1245",
+    sortYear: 1170,
+    language: "Sanskrit",
+    languages: ["Sanskrit"],
+    region: "Odisha",
+    era: "classical",
+    forms: ["Lyric", "Devotional"],
+    knownFor:
+      "Gita Govinda — Sanskrit's last great poem, and the first to make Radha the equal of Krishna.",
+    bio: "Jayadeva wrote in songs meant to be sung rather than recited, and gave the Radha–Krishna story the emotional weight that every later bhakti poet inherited. The Gita Govinda is still sung daily at the Jagannath temple in Puri, eight centuries on.",
+    works: [{ title: "Gita Govinda", year: "c. 1200" }],
+    honours: ["Sung as liturgy at the Jagannath temple, Puri"],
+    honourKeys: [],
+  },
+
+  // ── Bhakti & the vernaculars ─────────────────────────────────────────────
+  {
+    slug: "basavanna",
+    name: "Basavanna",
+    nativeName: "ಬಸವಣ್ಣ",
+    epithet: "Poet of the vachanas",
+    lifespan: "1131 – 1167",
+    sortYear: 1131,
+    language: "Kannada",
+    languages: ["Kannada"],
+    region: "Karnataka",
+    era: "bhakti",
+    forms: ["Vachana", "Devotional"],
+    knownFor:
+      "Vachana poetry — short, spoken, casteless verses that made Kannada a literature of protest.",
+    bio: "A statesman as much as a poet, Basavanna convened the Anubhava Mantapa, where washermen, cobblers and queens debated as equals and composed vachanas in ordinary Kannada. The form rejected Sanskrit, temple and caste at once.",
+    works: [{ title: "Vachanas", note: "Some 1,400 attributed verses" }],
+    honours: ["Founding voice of the Sharana movement"],
+    honourKeys: [],
+    quote: {
+      text: "The rich will make temples for Shiva. What shall I, a poor man, do? My legs are pillars, the body the shrine, the head a cupola of gold.",
+      source: "Vachana 820",
+    },
+  },
+  {
+    slug: "amir-khusrau",
+    name: "Amir Khusrau",
+    nativeName: "امیر خسرو",
+    epithet: "Tuti-e-Hind — the Parrot of India",
+    lifespan: "1253 – 1325",
+    sortYear: 1253,
+    language: "Persian",
+    languages: ["Persian", "Hindavi"],
+    region: "Delhi",
+    era: "bhakti",
+    forms: ["Poetry", "Music", "Riddle"],
+    knownFor:
+      "Inventing a Persian-Indian poetic idiom, and the qawwali and ghazal forms as India came to practise them.",
+    bio: "Court poet to seven sultans and disciple of Nizamuddin Auliya, Khusrau wrote masnavis in Persian and riddles and songs in the Hindavi that would become Hindi-Urdu. He is the point at which Persian and Indian literary traditions stop being neighbours and become one thing.",
+    works: [
+      { title: "Nuh Sipihr", note: "The Nine Skies" },
+      { title: "Khamsa-e-Khusrau" },
+      { title: "Khaliq Bari", note: "Persian–Hindavi verse lexicon" },
+    ],
+    honours: ["Founding figure of the qawwali tradition"],
+    honourKeys: [],
+  },
+  {
+    slug: "kabir",
+    name: "Kabir",
+    nativeName: "कबीर",
+    epithet: "The weaver-poet",
+    lifespan: "c. 1440 – 1518",
+    sortYear: 1440,
+    language: "Hindi",
+    languages: ["Hindi", "Braj", "Awadhi"],
+    region: "Varanasi",
+    era: "bhakti",
+    forms: ["Doha", "Devotional", "Satire"],
+    knownFor:
+      "Dohas that ridicule Hindu and Muslim orthodoxy with equal precision, in language a child can follow.",
+    bio: "A weaver by trade and no one's disciple by temperament, Kabir attacked ritual, priesthood and scripture in couplets so memorable they entered folk speech and stayed there. His verses appear in the Guru Granth Sahib, the Bijak and a dozen oral traditions that cannot agree on what he was — which was the point.",
+    works: [
+      { title: "Bijak" },
+      { title: "Sakhi, Sabad & Ramaini" },
+      { title: "Verses in the Guru Granth Sahib" },
+    ],
+    honours: ["Claimed by Hindu, Muslim and Sikh traditions alike"],
+    honourKeys: [],
+    quote: {
+      text: "I went out looking for the wicked man, and found none. Then I searched my own heart, and there was none more wicked than I.",
+    },
+    featured: true,
+  },
+  {
+    slug: "mirabai",
+    name: "Mirabai",
+    nativeName: "मीराबाई",
+    epithet: "The rebel saint of Mewar",
+    lifespan: "c. 1498 – 1547",
+    sortYear: 1498,
+    language: "Braj",
+    languages: ["Braj", "Rajasthani", "Gujarati"],
+    region: "Rajasthan",
+    era: "bhakti",
+    forms: ["Bhajan", "Devotional"],
+    knownFor:
+      "Bhajans of open devotion to Krishna, written by a Rajput princess who walked out of her marriage to sing them.",
+    bio: "Mirabai refused widowhood, court and caste, and set her refusal to music. Her padas survive largely through oral transmission rather than manuscript, which is a fair measure of who kept them alive: singers, not scholars.",
+    works: [{ title: "Padavali", note: "Several hundred padas attributed" }],
+    honours: ["The most sung woman poet in North India"],
+    honourKeys: [],
+    quote: { text: "Mine is Girdhar Gopal, and no other." },
+  },
+  {
+    slug: "tulsidas",
+    name: "Tulsidas",
+    nativeName: "तुलसीदास",
+    epithet: "Author of the Ramcharitmanas",
+    lifespan: "c. 1532 – 1623",
+    sortYear: 1532,
+    language: "Awadhi",
+    languages: ["Awadhi", "Braj", "Sanskrit"],
+    region: "Varanasi",
+    era: "bhakti",
+    forms: ["Epic", "Devotional"],
+    knownFor:
+      "Retelling the Ramayana in Awadhi so that people who could not read Sanskrit could own it.",
+    bio: "Rewriting the Ramayana in a spoken language was, in the sixteenth century, close to heresy — and it made the Ramcharitmanas the most read book in North India for four hundred years. Tulsidas also gave devotional Hindi its most recited short text, the Hanuman Chalisa.",
+    works: [
+      { title: "Ramcharitmanas", year: "1574" },
+      { title: "Hanuman Chalisa" },
+      { title: "Vinaya Patrika" },
+      { title: "Kavitavali" },
+    ],
+    honours: ["The most widely read devotional epic in North India"],
+    honourKeys: [],
+    quote: {
+      text: "There is no dharma like doing good to others, and no sin like doing them harm.",
+      source: "Ramcharitmanas",
+    },
+    featured: true,
+  },
+
+  // ── The Renaissance ──────────────────────────────────────────────────────
+  {
+    slug: "mirza-ghalib",
+    name: "Mirza Ghalib",
+    nativeName: "مرزا غالب",
+    epithet: "The last poet of Mughal Delhi",
+    lifespan: "1797 – 1869",
+    sortYear: 1797,
+    language: "Urdu",
+    languages: ["Urdu", "Persian"],
+    region: "Agra & Delhi",
+    era: "renaissance",
+    forms: ["Ghazal", "Letters"],
+    knownFor:
+      "Ghazals of unmatched compression, and letters that invented modern Urdu prose almost by accident.",
+    bio: "Ghalib watched the Mughal court and the city he loved destroyed in 1857, and wrote about it in letters so direct and unliterary that they became the model for Urdu prose. His ghazals remain the standard against which the form is measured — sceptical, self-mocking, and entirely unsentimental.",
+    works: [
+      { title: "Diwan-e-Ghalib" },
+      { title: "Ud-e-Hindi", note: "Collected letters" },
+      { title: "Dastanbuy", note: "Diary of the 1857 uprising" },
+    ],
+    honours: ["Titled Dabir-ul-Mulk and Najm-ud-Daula at the Mughal court"],
+    honourKeys: [],
+    quote: {
+      text: "A thousand desires, each one enough to take my breath — many were fulfilled, and still too few.",
+      source: "Diwan-e-Ghalib",
+    },
+    featured: true,
+  },
+  {
+    slug: "bankim-chandra-chattopadhyay",
+    name: "Bankim Chandra Chattopadhyay",
+    nativeName: "বঙ্কিমচন্দ্র চট্টোপাধ্যায়",
+    epithet: "The first Indian novelist",
+    lifespan: "1838 – 1894",
+    sortYear: 1838,
+    language: "Bengali",
+    languages: ["Bengali", "English"],
+    region: "Bengal",
+    era: "renaissance",
+    forms: ["Novel", "Essay"],
+    knownFor:
+      "Bringing the novel into Indian languages, and writing Vande Mataram inside one of them.",
+    bio: "Bankim took a European form and made it carry Indian history, beginning with Durgeshnandini in 1865. Anandamath, his novel of an ascetic rebellion, contained a hymn to the motherland that outgrew the book entirely and became the anthem of the freedom movement.",
+    works: [
+      { title: "Durgeshnandini", year: "1865" },
+      { title: "Kapalkundala", year: "1866" },
+      { title: "Vishabriksha", year: "1873" },
+      { title: "Anandamath", year: "1882", note: "Contains Vande Mataram" },
+    ],
+    honours: ["Author of Vande Mataram, India's national song"],
+    honourKeys: [],
+  },
+  {
+    slug: "fakir-mohan-senapati",
+    name: "Fakir Mohan Senapati",
+    nativeName: "ଫକୀରମୋହନ ସେନାପତି",
+    epithet: "Father of modern Odia literature",
+    lifespan: "1843 – 1918",
+    sortYear: 1843,
+    language: "Odia",
+    languages: ["Odia"],
+    region: "Odisha",
+    era: "renaissance",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Six Acres and a Third — a satire on land, law and caste that reads a century ahead of its date.",
+    bio: "Senapati fought to keep Odia alive as a language of administration when it was being written off as a dialect of Bengali, then proved the case in fiction. Chha Mana Atha Guntha dismantles a village landlord through a narrator so sly that critics still argue about where the author stands.",
+    works: [
+      {
+        title: "Chha Mana Atha Guntha",
+        year: "1902",
+        note: "Six Acres and a Third",
+      },
+      { title: "Rebati", note: "The first Odia short story" },
+      { title: "Mamu" },
+    ],
+    honours: ["Titled Vyasakabi — the Vyasa among poets"],
+    honourKeys: [],
+  },
+  {
+    slug: "rabindranath-tagore",
+    name: "Rabindranath Tagore",
+    nativeName: "রবীন্দ্রনাথ ঠাকুর",
+    epithet: "Gurudev",
+    lifespan: "1861 – 1941",
+    sortYear: 1861,
+    language: "Bengali",
+    languages: ["Bengali", "English"],
+    region: "Kolkata, Bengal",
+    era: "renaissance",
+    forms: ["Poetry", "Novel", "Drama", "Song", "Essay"],
+    knownFor:
+      "The first Nobel Prize in Literature awarded outside Europe, and roughly 2,000 songs that are their own genre.",
+    bio: "Tagore wrote poems, novels, plays, essays, textbooks and songs at a volume that makes summary impossible, founded a university at Santiniketan on the principle that education should happen outdoors, and wrote the national anthems of two countries. He returned his knighthood in 1919 in protest at the Jallianwala Bagh massacre.",
+    works: [
+      { title: "Gitanjali", year: "1910", note: "Song Offerings" },
+      { title: "Gora", year: "1910" },
+      { title: "Ghare Baire", year: "1916", note: "The Home and the World" },
+      { title: "Jana Gana Mana", note: "National anthem of India" },
+      { title: "Amar Shonar Bangla", note: "National anthem of Bangladesh" },
+    ],
+    honours: [
+      "Nobel Prize in Literature (1913)",
+      "Knighthood (1915), renounced in 1919",
+    ],
+    honourKeys: ["nobel"],
+    quote: {
+      text: "Where the mind is without fear and the head is held high; where knowledge is free — into that heaven of freedom, my Father, let my country awake.",
+      source: "Gitanjali, 35",
+    },
+    featured: true,
+  },
+  {
+    slug: "sarat-chandra-chattopadhyay",
+    name: "Sarat Chandra Chattopadhyay",
+    nativeName: "শরৎচন্দ্র চট্টোপাধ্যায়",
+    epithet: "The people's novelist",
+    lifespan: "1876 – 1938",
+    sortYear: 1876,
+    language: "Bengali",
+    languages: ["Bengali"],
+    region: "Bengal",
+    era: "renaissance",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Devdas and Parineeta — and the most adapted body of work in Indian literature.",
+    bio: "Sarat Chandra wrote about widows, outcasts and unhappy marriages with a directness that made him the most popular Bengali novelist of his time and the most filmed since. Devdas alone has been adapted for the screen more than twenty times, in a dozen languages.",
+    works: [
+      { title: "Devdas", year: "1917" },
+      { title: "Parineeta", year: "1914" },
+      { title: "Srikanta", year: "1917–1933" },
+      { title: "Palli Samaj", year: "1916" },
+    ],
+    honours: ["Jagattarini Gold Medal, University of Calcutta (1923)"],
+    honourKeys: [],
+  },
+  {
+    slug: "premchand",
+    name: "Premchand",
+    nativeName: "प्रेमचंद",
+    epithet: "Upanyas Samrat — emperor of the novel",
+    lifespan: "1880 – 1936",
+    sortYear: 1880,
+    language: "Hindi",
+    languages: ["Hindi", "Urdu"],
+    region: "Lamhi, Varanasi",
+    era: "renaissance",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Godaan and some three hundred stories that moved Hindi fiction from romance to the lives of peasants and the poor.",
+    bio: "Writing first in Urdu as Nawab Rai and then in Hindi as Premchand, he turned fiction toward debt, caste, landlordism and the humiliations of village life without ever making his characters into arguments. His first collection was burned by the British in 1909; Godaan, published the year he died, is still the benchmark Hindi novel.",
+    works: [
+      { title: "Godaan", year: "1936", note: "The Gift of a Cow" },
+      { title: "Gaban", year: "1931" },
+      { title: "Nirmala", year: "1928" },
+      { title: "Sevasadan", year: "1919" },
+      { title: "Kafan", note: "Short story" },
+      { title: "Idgah", note: "Short story" },
+    ],
+    honours: [
+      "Founding president of the Progressive Writers' Association (1936)",
+    ],
+    honourKeys: [],
+    featured: true,
+  },
+  {
+    slug: "subramania-bharati",
+    name: "Subramania Bharati",
+    nativeName: "சுப்பிரமணிய பாரதி",
+    epithet: "Mahakavi Bharatiyar",
+    lifespan: "1882 – 1921",
+    sortYear: 1882,
+    language: "Tamil",
+    languages: ["Tamil"],
+    region: "Ettayapuram, Tamil Nadu",
+    era: "renaissance",
+    forms: ["Poetry", "Journalism"],
+    knownFor:
+      "Modernising Tamil verse and writing the freedom movement's most singable poems.",
+    bio: "Bharati stripped Tamil poetry of its ornamental armour and wrote in a language close to speech, about independence, caste abolition and the education of women — positions that cost him exile in Pondicherry and near-poverty for life. He died at thirty-nine, and Tamil poetry has been post-Bharati ever since.",
+    works: [
+      { title: "Panchali Sapatham", year: "1912" },
+      { title: "Kannan Pattu" },
+      { title: "Kuyil Pattu" },
+      { title: "Swadesa Geethangal" },
+    ],
+    honours: [
+      "The first Tamil writer whose works were nationalised by the state",
+    ],
+    honourKeys: [],
+    quote: {
+      text: "No fear, no fear, there is no fear — even if the whole world stands against us.",
+      source: "Achamillai Achamillai",
+    },
+    featured: true,
+  },
+  {
+    slug: "kazi-nazrul-islam",
+    name: "Kazi Nazrul Islam",
+    nativeName: "কাজী নজরুল ইসলাম",
+    epithet: "Bidrohi Kobi — the rebel poet",
+    lifespan: "1899 – 1976",
+    sortYear: 1899,
+    language: "Bengali",
+    languages: ["Bengali"],
+    region: "Bengal",
+    era: "renaissance",
+    forms: ["Poetry", "Song"],
+    knownFor:
+      "Bidrohi, the poem that made colonial Bengal's most defiant noise, and some 4,000 songs.",
+    bio: "A soldier turned poet, Nazrul wrote against colonialism, religious orthodoxy and the subjection of women with a ferocity that got his books banned and himself jailed. He fell silent in 1942 from an illness that never lifted, and was later made the national poet of Bangladesh.",
+    works: [
+      { title: "Bidrohi", year: "1922", note: "The Rebel" },
+      { title: "Agnibeena", year: "1922" },
+      { title: "Bisher Banshi", year: "1924", note: "Banned by the Raj" },
+      { title: "Nazrul Geeti", note: "Some 4,000 songs" },
+    ],
+    honours: ["National Poet of Bangladesh", "Padma Bhushan (1960)"],
+    honourKeys: ["padma"],
+    quote: { text: "Say, O Valiant — say: high is my head!", source: "Bidrohi" },
+  },
+
+  // ── Modern masters ───────────────────────────────────────────────────────
+  {
+    slug: "viswanatha-satyanarayana",
+    name: "Viswanatha Satyanarayana",
+    nativeName: "విశ్వనాథ సత్యనారాయణ",
+    epithet: "Kavi Samrat",
+    lifespan: "1895 – 1976",
+    sortYear: 1895,
+    language: "Telugu",
+    languages: ["Telugu", "Sanskrit"],
+    region: "Andhra Pradesh",
+    era: "modern",
+    forms: ["Poetry", "Novel"],
+    knownFor:
+      "The first Jnanpith Award for Telugu, for a Ramayana retold in classical metre against the modernist current.",
+    bio: "Viswanatha defended classical Telugu prosody at exactly the moment free verse was winning, and wrote a Ramayana of such technical command that even his opponents conceded the point. Veyipadagalu, his vast novel of a decaying village, is the other half of his case.",
+    works: [
+      { title: "Ramayana Kalpavrukshamu", note: "Jnanpith Award, 1970" },
+      { title: "Veyipadagalu", year: "1937", note: "One Thousand Hoods" },
+    ],
+    honours: [
+      "Jnanpith Award (1970) — the first for Telugu",
+      "Padma Bhushan (1970)",
+    ],
+    honourKeys: ["jnanpith", "padma"],
+  },
+  {
+    slug: "v-s-khandekar",
+    name: "V. S. Khandekar",
+    nativeName: "वि. स. खांडेकर",
+    epithet: "The moralist of Marathi fiction",
+    lifespan: "1898 – 1976",
+    sortYear: 1898,
+    language: "Marathi",
+    languages: ["Marathi"],
+    region: "Maharashtra",
+    era: "modern",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Yayati — the first Jnanpith Award for Marathi, and a myth read as a study of appetite.",
+    bio: "Khandekar took the Mahabharata's King Yayati, who borrowed his son's youth to prolong his own pleasure, and made him a modern case study in insatiability. His fiction is unapologetically ethical, and was read across Maharashtra for fifty years.",
+    works: [
+      { title: "Yayati", year: "1959", note: "Jnanpith Award, 1974" },
+      { title: "Ulka", year: "1934" },
+      { title: "Kraunchavadh", year: "1942" },
+    ],
+    honours: [
+      "Jnanpith Award (1974) — the first for Marathi",
+      "Padma Bhushan (1968)",
+    ],
+    honourKeys: ["jnanpith", "padma"],
+  },
+  {
+    slug: "kuvempu",
+    name: "Kuvempu",
+    nativeName: "ಕುವೆಂಪು",
+    epithet: "Rashtrakavi of Karnataka",
+    lifespan: "1904 – 1994",
+    sortYear: 1904,
+    language: "Kannada",
+    languages: ["Kannada"],
+    region: "Malnad, Karnataka",
+    era: "modern",
+    forms: ["Epic", "Novel", "Poetry"],
+    knownFor:
+      "Sri Ramayana Darshanam — the first Jnanpith for Kannada — and the Karnataka state anthem.",
+    bio: "K. V. Puttappa wrote a modern epic in blank verse, two great novels of the Western Ghats, and a lifetime of polemic against caste and ritual under the banner of Vishwa Manava — the universal human. He also insisted that Kannada be the medium of instruction, and largely won the argument.",
+    works: [
+      {
+        title: "Sri Ramayana Darshanam",
+        year: "1949",
+        note: "Jnanpith Award, 1967",
+      },
+      { title: "Malegalalli Madumagalu", year: "1967" },
+      { title: "Kanooru Heggadithi", year: "1936" },
+      {
+        title: "Jaya Bharata Jananiya Tanujate",
+        note: "State anthem of Karnataka",
+      },
+    ],
+    honours: [
+      "Jnanpith Award (1967) — the first for Kannada",
+      "Padma Vibhushan (1988)",
+      "Rashtrakavi (1964)",
+    ],
+    honourKeys: ["jnanpith", "padma"],
+  },
+  {
+    slug: "mulk-raj-anand",
+    name: "Mulk Raj Anand",
+    nativeName: "मुल्क राज आनंद",
+    epithet: "Founder of Indian writing in English",
+    lifespan: "1905 – 2004",
+    sortYear: 1905,
+    language: "English",
+    languages: ["English"],
+    region: "Peshawar & Bombay",
+    era: "modern",
+    forms: ["Novel", "Essay"],
+    knownFor:
+      "Untouchable — a day in the life of a latrine cleaner, and the book that made Indian English fiction political.",
+    bio: "Anand wrote Untouchable in London among the Bloomsbury set, was rejected by publisher after publisher, and got it into print only after E. M. Forster supplied a preface. He spent the rest of a very long life arguing that the novel in English could belong to Indian labour.",
+    works: [
+      { title: "Untouchable", year: "1935" },
+      { title: "Coolie", year: "1936" },
+      { title: "Two Leaves and a Bud", year: "1937" },
+      { title: "The Village", year: "1939", note: "First of the Lalu trilogy" },
+    ],
+    honours: ["Sahitya Akademi Award (1971)", "Padma Bhushan (1967)"],
+    honourKeys: ["sahitya-akademi", "padma"],
+  },
+  {
+    slug: "r-k-narayan",
+    name: "R. K. Narayan",
+    epithet: "The cartographer of Malgudi",
+    lifespan: "1906 – 2001",
+    sortYear: 1906,
+    language: "English",
+    languages: ["English"],
+    region: "Mysore",
+    era: "modern",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Malgudi — an invented South Indian town so complete that readers still look for it on maps.",
+    bio: "Narayan wrote fourteen novels and dozens of stories in a plain, unhurried English about schoolteachers, printers, sweet vendors and guides, and never raised his voice once. Graham Greene found him a publisher for Swami and Friends in 1935 and stayed his champion for life.",
+    works: [
+      { title: "Swami and Friends", year: "1935" },
+      { title: "The English Teacher", year: "1945" },
+      { title: "The Guide", year: "1958", note: "Sahitya Akademi Award, 1960" },
+      { title: "The Man-Eater of Malgudi", year: "1961" },
+      { title: "Malgudi Days", year: "1943" },
+    ],
+    honours: [
+      "Sahitya Akademi Award (1960)",
+      "Padma Vibhushan (2000)",
+      "AC Benson Medal, Royal Society of Literature (1980)",
+    ],
+    honourKeys: ["sahitya-akademi", "padma"],
+    featured: true,
+  },
+  {
+    slug: "mahadevi-verma",
+    name: "Mahadevi Verma",
+    nativeName: "महादेवी वर्मा",
+    epithet: "The modern Mira",
+    lifespan: "1907 – 1987",
+    sortYear: 1907,
+    language: "Hindi",
+    languages: ["Hindi"],
+    region: "Uttar Pradesh",
+    era: "modern",
+    forms: ["Poetry", "Memoir", "Essay"],
+    knownFor:
+      "One of the four pillars of Chhayavad, and Hindi's first great feminist essayist.",
+    bio: "Mahadevi wrote lyric poetry of longing so controlled it was compared to Mirabai's, then wrote prose sketches of the women around her that quietly indicted everything about their circumstances. She ran a women's college in Prayagraj for decades while doing both.",
+    works: [
+      { title: "Yama", year: "1940", note: "Jnanpith Award, 1982" },
+      { title: "Neerja", year: "1934" },
+      { title: "Deepshikha", year: "1942" },
+      { title: "Shrinkhala ki Kadiyan", note: "Essays on women" },
+    ],
+    honours: [
+      "Jnanpith Award (1982)",
+      "Sahitya Akademi Award (1979)",
+      "Padma Vibhushan (1988)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+  },
+  {
+    slug: "vaikom-muhammad-basheer",
+    name: "Vaikom Muhammad Basheer",
+    nativeName: "വൈക്കം മുഹമ്മദ് ബഷീർ",
+    epithet: "Beypore Sultan",
+    lifespan: "1908 – 1994",
+    sortYear: 1908,
+    language: "Malayalam",
+    languages: ["Malayalam"],
+    region: "Kerala",
+    era: "modern",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Writing Malayalam exactly as it is spoken, and getting away with jokes no one else could make.",
+    bio: "A freedom fighter who spent years in colonial jails and years more wandering as a mendicant, Basheer wrote short, funny, devastating books in an unliterary Malayalam that scandalised critics and delighted everyone else. Mathilukal, a love story between prisoners who never see each other, was written from experience.",
+    works: [
+      { title: "Balyakalasakhi", year: "1944", note: "Childhood Friend" },
+      { title: "Pathummayude Aadu", year: "1959" },
+      { title: "Ntuppuppakkoranendarnnu", year: "1951" },
+      { title: "Mathilukal", year: "1965", note: "Walls" },
+    ],
+    honours: ["Padma Shri (1982)", "Sahitya Akademi Fellowship (1970)"],
+    honourKeys: ["padma"],
+  },
+  {
+    slug: "ramdhari-singh-dinkar",
+    name: "Ramdhari Singh 'Dinkar'",
+    nativeName: "रामधारी सिंह दिनकर",
+    epithet: "Rashtrakavi — the national poet",
+    lifespan: "1908 – 1974",
+    sortYear: 1908,
+    language: "Hindi",
+    languages: ["Hindi"],
+    region: "Bihar",
+    era: "modern",
+    forms: ["Poetry", "Essay"],
+    knownFor:
+      "Rashmirathi and Urvashi — heroic verse that became the sound of Indian nationalism, and later of dissent against it.",
+    bio: "Dinkar was the poet the freedom movement recited, and the poet the 1974 student movement recited against the government — the same verses serving both. Urvashi won the Jnanpith; Sanskriti ke Char Adhyay remains his most ambitious prose.",
+    works: [
+      { title: "Rashmirathi", year: "1952" },
+      { title: "Urvashi", year: "1961", note: "Jnanpith Award, 1972" },
+      { title: "Kurukshetra", year: "1946" },
+      { title: "Sanskriti ke Char Adhyay", year: "1956" },
+    ],
+    honours: [
+      "Jnanpith Award (1972)",
+      "Sahitya Akademi Award (1959)",
+      "Padma Bhushan (1959)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+  },
+  {
+    slug: "ashapoorna-devi",
+    name: "Ashapoorna Devi",
+    nativeName: "আশাপূর্ণা দেবী",
+    epithet: "Chronicler of the inner household",
+    lifespan: "1909 – 1995",
+    sortYear: 1909,
+    language: "Bengali",
+    languages: ["Bengali"],
+    region: "Bengal",
+    era: "modern",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "The Pratham Pratisruti trilogy — three generations of women — and being the first woman to win the Jnanpith.",
+    bio: "Never allowed to attend school, Ashapoorna Devi learned to read by listening at the door of her brothers' lessons and went on to publish well over a hundred novels. Her trilogy traces a family's women from the nineteenth century to the twentieth without once leaving the domestic interior, and loses nothing by it.",
+    works: [
+      {
+        title: "Pratham Pratisruti",
+        year: "1964",
+        note: "Jnanpith Award, 1976",
+      },
+      { title: "Subarnalata", year: "1967" },
+      { title: "Bakul Katha", year: "1974" },
+    ],
+    honours: [
+      "Jnanpith Award (1976) — the first woman to receive it",
+      "Padma Shri (1976)",
+    ],
+    honourKeys: ["jnanpith", "padma"],
+  },
+  {
+    slug: "umashankar-joshi",
+    name: "Umashankar Joshi",
+    nativeName: "ઉમાશંકર જોશી",
+    epithet: "The conscience of Gujarati letters",
+    lifespan: "1911 – 1988",
+    sortYear: 1911,
+    language: "Gujarati",
+    languages: ["Gujarati"],
+    region: "Gujarat",
+    era: "modern",
+    forms: ["Poetry", "Drama", "Criticism"],
+    knownFor:
+      "Nishitha, and four decades of editing that shaped what Gujarati writing took seriously.",
+    bio: "Joshi joined the civil disobedience movement as a student and never entirely left politics behind, editing the journal Sanskriti for thirty years while writing the poetry that won him the Jnanpith. His verse drama and criticism did as much as his poems to modernise Gujarati.",
+    works: [
+      { title: "Nishitha", year: "1939", note: "Jnanpith Award, 1967" },
+      { title: "Vishwa Shanti", year: "1931" },
+      { title: "Prachina", year: "1944" },
+    ],
+    honours: [
+      "Jnanpith Award (1967)",
+      "Sahitya Akademi Award (1973)",
+      "Padma Bhushan (1979)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+  },
+  {
+    slug: "saadat-hasan-manto",
+    name: "Saadat Hasan Manto",
+    nativeName: "سعادت حسن منٹو",
+    epithet: "The unflinching witness",
+    lifespan: "1912 – 1955",
+    sortYear: 1912,
+    language: "Urdu",
+    languages: ["Urdu"],
+    region: "Punjab, Bombay & Lahore",
+    era: "modern",
+    forms: ["Short story", "Essay", "Screenplay"],
+    knownFor:
+      "Toba Tek Singh and the Partition stories — the most honest literature produced about 1947.",
+    bio: "Manto was tried six times for obscenity, three times before independence and three after, for refusing to look away from prostitution, communal murder and the ordinary cruelty of ordinary people. His Partition stories are two pages long and permanent.",
+    works: [
+      { title: "Toba Tek Singh", year: "1955" },
+      { title: "Thanda Gosht", year: "1950" },
+      { title: "Khol Do", year: "1948" },
+      { title: "Siyah Hashiye", year: "1948", note: "Black Margins" },
+    ],
+    honours: ["Nishan-e-Imtiaz, awarded posthumously (2012)"],
+    honourKeys: [],
+    quote: {
+      text: "If you find my stories unbearable, it is because we live in unbearable times.",
+      source: "From his defence against the obscenity charges",
+    },
+    featured: true,
+  },
+  {
+    slug: "thakazhi-sivasankara-pillai",
+    name: "Thakazhi Sivasankara Pillai",
+    nativeName: "തകഴി ശിവശങ്കരപ്പിള്ള",
+    epithet: "Novelist of the Kuttanad coast",
+    lifespan: "1912 – 1999",
+    sortYear: 1912,
+    language: "Malayalam",
+    languages: ["Malayalam"],
+    region: "Kuttanad, Kerala",
+    era: "modern",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Chemmeen — a fishing-village tragedy that is among the most celebrated novels written in Malayalam.",
+    bio: "Thakazhi wrote about labourers, fisherfolk and the land itself with a documentary patience that turned into epic in Kayar, his four-generation novel of land tenure in Kerala. Chemmeen made him internationally read; Kayar won him the Jnanpith.",
+    works: [
+      { title: "Chemmeen", year: "1956", note: "Shrimp" },
+      { title: "Kayar", year: "1978", note: "Coir — Jnanpith Award, 1984" },
+      { title: "Randidangazhi", year: "1948", note: "Two Measures" },
+    ],
+    honours: [
+      "Jnanpith Award (1984)",
+      "Sahitya Akademi Award (1957)",
+      "Padma Bhushan (1985)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+  },
+  {
+    slug: "gopinath-mohanty",
+    name: "Gopinath Mohanty",
+    nativeName: "ଗୋପୀନାଥ ମହାନ୍ତି",
+    epithet: "Novelist of the Odisha hills",
+    lifespan: "1914 – 1991",
+    sortYear: 1914,
+    language: "Odia",
+    languages: ["Odia"],
+    region: "Odisha",
+    era: "modern",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Paraja and Amrutara Santana — among the first serious fiction about India's tribal communities written from inside their lives.",
+    bio: "As a civil servant posted to the Koraput hills, Mohanty learned local dialects and wrote novels about people Indian literature had until then only described from outside. Amrutara Santana brought Odia its first Jnanpith.",
+    works: [
+      { title: "Amrutara Santana", year: "1949", note: "Jnanpith Award, 1973" },
+      { title: "Paraja", year: "1945" },
+      { title: "Danapani", year: "1955" },
+    ],
+    honours: [
+      "Jnanpith Award (1973) — the first for Odia",
+      "Sahitya Akademi Award (1955)",
+      "Padma Bhushan (1981)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+  },
+  {
+    slug: "ismat-chughtai",
+    name: "Ismat Chughtai",
+    nativeName: "عصمت چغتائی",
+    epithet: "Lady Changez Khan",
+    lifespan: "1915 – 1991",
+    sortYear: 1915,
+    language: "Urdu",
+    languages: ["Urdu"],
+    region: "Uttar Pradesh & Bombay",
+    era: "modern",
+    forms: ["Short story", "Novel", "Screenplay"],
+    knownFor:
+      "Lihaaf — the 1942 story about a woman's desire that put her on trial for obscenity, and that she refused to apologise for.",
+    bio: "Chughtai wrote the interior life of Muslim middle-class women in a colloquial Urdu full of gossip, malice and comedy, and treated female sexuality as an ordinary fact of it. Summoned to Lahore alongside Manto to defend Lihaaf, she won the case and declined the settlement that would have required an apology.",
+    works: [
+      { title: "Lihaaf", year: "1942", note: "The Quilt" },
+      { title: "Terhi Lakeer", year: "1944", note: "The Crooked Line" },
+      { title: "Ziddi", year: "1941" },
+      { title: "Kaghazi Hai Pairahan", note: "Memoir" },
+    ],
+    honours: ["Padma Shri (1976)", "Ghalib Award (1974)"],
+    honourKeys: ["padma"],
+    featured: true,
+  },
+  {
+    slug: "amrita-pritam",
+    name: "Amrita Pritam",
+    nativeName: "ਅੰਮ੍ਰਿਤਾ ਪ੍ਰੀਤਮ",
+    epithet: "The voice of a partitioned Punjab",
+    lifespan: "1919 – 2005",
+    sortYear: 1919,
+    language: "Punjabi",
+    languages: ["Punjabi", "Hindi"],
+    region: "Punjab & Delhi",
+    era: "modern",
+    forms: ["Poetry", "Novel", "Memoir"],
+    knownFor:
+      "Ajj Aakhaan Waris Shah Nu — the poem of Partition, written on a train out of Lahore.",
+    bio: "The first major woman poet in Punjabi, Amrita Pritam wrote a hundred books and lived exactly as she chose, which cost her a good deal. Pinjar, her novel of an abducted woman who cannot go home again, is the finest fiction written about Partition from a woman's side of it.",
+    works: [
+      { title: "Ajj Aakhaan Waris Shah Nu", year: "1948" },
+      { title: "Pinjar", year: "1950", note: "The Skeleton" },
+      { title: "Sunehade", year: "1955", note: "Sahitya Akademi Award" },
+      { title: "Kagaz Te Canvas", year: "1973", note: "Jnanpith Award, 1981" },
+    ],
+    honours: [
+      "Jnanpith Award (1981)",
+      "Sahitya Akademi Award (1956) — the first woman to receive it",
+      "Padma Vibhushan (2004)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+    quote: {
+      text: "Today I call on Waris Shah — speak from your grave, and turn a fresh page of the book of love.",
+      source: "Ajj Aakhaan Waris Shah Nu",
+    },
+    featured: true,
+  },
+  {
+    slug: "krishna-sobti",
+    name: "Krishna Sobti",
+    nativeName: "कृष्णा सोबती",
+    epithet: "The grande dame of Hindi fiction",
+    lifespan: "1925 – 2019",
+    sortYear: 1925,
+    language: "Hindi",
+    languages: ["Hindi", "Urdu", "Punjabi"],
+    region: "Punjab & Delhi",
+    era: "modern",
+    forms: ["Novel", "Essay"],
+    knownFor:
+      "Zindaginama and Mitro Marjani — Hindi prose remade with Punjabi and Urdu rhythm, and women who want things.",
+    bio: "Sobti wrote a Hindi thick with Punjabi, Urdu and Rajasthani, and put a frankly desiring young wife at the centre of Mitro Marjani in 1966, which caused precisely the scandal one would expect. She returned her Sahitya Akademi Award in 2015 in protest, two years before receiving the Jnanpith.",
+    works: [
+      {
+        title: "Zindaginama",
+        year: "1979",
+        note: "Sahitya Akademi Award, 1980",
+      },
+      { title: "Mitro Marjani", year: "1966" },
+      { title: "Dil-o-Danish", year: "1993" },
+      { title: "Ai Ladki", year: "1991" },
+    ],
+    honours: [
+      "Jnanpith Award (2017)",
+      "Sahitya Akademi Award (1980)",
+      "Sahitya Akademi Fellowship (1996)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi"],
+  },
+  {
+    slug: "mahasweta-devi",
+    name: "Mahasweta Devi",
+    nativeName: "মহাশ্বেতা দেবী",
+    epithet: "Writer among the dispossessed",
+    lifespan: "1926 – 2016",
+    sortYear: 1926,
+    language: "Bengali",
+    languages: ["Bengali"],
+    region: "West Bengal & Jharkhand",
+    era: "modern",
+    forms: ["Novel", "Short story", "Reportage"],
+    knownFor:
+      "Fiction and activism on behalf of India's tribal communities, at a volume that made the two indistinguishable.",
+    bio: "Mahasweta Devi spent decades living and organising among the Lodha and Shabar communities of Bengal and Bihar, and wrote about bonded labour and state violence in fiction that reads like testimony. Hajar Churashir Maa, about a mother identifying her son's body after a police killing, remains her most read book.",
+    works: [
+      { title: "Hajar Churashir Maa", year: "1974", note: "Mother of 1084" },
+      {
+        title: "Aranyer Adhikar",
+        year: "1977",
+        note: "Sahitya Akademi Award, 1979",
+      },
+      { title: "Draupadi", note: "Short story" },
+      { title: "Stanadayini", note: "Breast-Giver" },
+    ],
+    honours: [
+      "Jnanpith Award (1996)",
+      "Sahitya Akademi Award (1979)",
+      "Ramon Magsaysay Award (1997)",
+      "Padma Vibhushan (2006)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+    featured: true,
+  },
+  {
+    slug: "girish-karnad",
+    name: "Girish Karnad",
+    nativeName: "ಗಿರೀಶ್ ಕಾರ್ನಾಡ್",
+    epithet: "Playwright of myth and power",
+    lifespan: "1938 – 2019",
+    sortYear: 1938,
+    language: "Kannada",
+    languages: ["Kannada", "English"],
+    region: "Karnataka",
+    era: "modern",
+    forms: ["Drama", "Film"],
+    knownFor:
+      "Tughlaq and Hayavadana — myth and history turned into the sharpest political theatre in modern India.",
+    bio: "Karnad wrote Yayati in his early twenties while preparing to leave for Oxford as a Rhodes Scholar, and spent the next fifty years using folk tale and chronicle to say things about contemporary power that could not be said directly. He was also, simultaneously, a major actor and film-maker.",
+    works: [
+      { title: "Yayati", year: "1961" },
+      { title: "Tughlaq", year: "1964" },
+      { title: "Hayavadana", year: "1971" },
+      { title: "Nagamandala", year: "1988" },
+    ],
+    honours: [
+      "Jnanpith Award (1998)",
+      "Sahitya Akademi Award (1994)",
+      "Padma Bhushan (1992)",
+    ],
+    honourKeys: ["jnanpith", "sahitya-akademi", "padma"],
+  },
+
+  // ── Contemporary ─────────────────────────────────────────────────────────
+  {
+    slug: "kamala-das",
+    name: "Kamala Das",
+    nativeName: "കമല ദാസ്",
+    epithet: "Madhavikutty",
+    lifespan: "1934 – 2009",
+    sortYear: 1934,
+    language: "English",
+    languages: ["English", "Malayalam"],
+    region: "Kerala",
+    era: "contemporary",
+    forms: ["Poetry", "Short story", "Memoir"],
+    knownFor:
+      "Confessional poetry in English and fiction in Malayalam, both written with a candour that made her permanently controversial.",
+    bio: "Das wrote poems in English about desire, marriage and the humiliations of both, and short stories in Malayalam under the name Madhavikutty. My Story, her 1976 autobiography, was attacked as obscene and has never been out of print since.",
+    works: [
+      { title: "Summer in Calcutta", year: "1965" },
+      { title: "The Descendants", year: "1967" },
+      { title: "My Story", year: "1976" },
+      { title: "Ente Katha", note: "Malayalam stories as Madhavikutty" },
+    ],
+    honours: ["Sahitya Akademi Award (1985)", "Asian Poetry Prize (1998)"],
+    honourKeys: ["sahitya-akademi"],
+    quote: {
+      text: "I am Indian, very brown, born in Malabar, I speak three languages, write in two, dream in one.",
+      source: "An Introduction",
+    },
+    featured: true,
+  },
+  {
+    slug: "ruskin-bond",
+    name: "Ruskin Bond",
+    epithet: "The writer of the hills",
+    lifespan: "b. 1934",
+    sortYear: 1934,
+    language: "English",
+    languages: ["English"],
+    region: "Mussoorie, Uttarakhand",
+    era: "contemporary",
+    forms: ["Novel", "Short story", "Essay"],
+    knownFor:
+      "Seven decades of stories about the Himalayan foothills, and the childhood reading of several Indian generations.",
+    bio: "Bond wrote The Room on the Roof at seventeen, won a British prize for it, and then spent his life in a small hill town writing quiet stories about it. He has published well over a hundred books and shows no interest in stopping.",
+    works: [
+      { title: "The Room on the Roof", year: "1956" },
+      { title: "A Flight of Pigeons", year: "1978" },
+      { title: "The Blue Umbrella", year: "1980" },
+      { title: "The Night Train at Deoli", year: "1988" },
+    ],
+    honours: [
+      "Sahitya Akademi Award (1992)",
+      "Padma Bhushan (2014)",
+      "John Llewellyn Rhys Prize (1957)",
+    ],
+    honourKeys: ["sahitya-akademi", "padma"],
+  },
+  {
+    slug: "salman-rushdie",
+    name: "Salman Rushdie",
+    epithet: "Chronicler of midnight",
+    lifespan: "b. 1947",
+    sortYear: 1947,
+    language: "English",
+    languages: ["English"],
+    region: "Bombay",
+    era: "contemporary",
+    forms: ["Novel", "Essay"],
+    knownFor:
+      "Midnight's Children — the novel that made Indian English fiction a global event.",
+    bio: "Rushdie fused Bombay talk, magic realism and the history of independent India into a prose style that a generation of Indian novelists then had to write their way out of. Midnight's Children took the Booker in 1981 and was later voted the best of all Booker winners, twice.",
+    works: [
+      { title: "Midnight's Children", year: "1981" },
+      { title: "Shame", year: "1983" },
+      { title: "Haroun and the Sea of Stories", year: "1990" },
+      { title: "The Moor's Last Sigh", year: "1995" },
+    ],
+    honours: [
+      "Booker Prize (1981)",
+      "Best of the Booker (1993, 2008)",
+      "Knighthood for services to literature (2007)",
+    ],
+    honourKeys: ["booker"],
+    featured: true,
+  },
+  {
+    slug: "vikram-seth",
+    name: "Vikram Seth",
+    epithet: "The novelist in verse",
+    lifespan: "b. 1952",
+    sortYear: 1952,
+    language: "English",
+    languages: ["English"],
+    region: "Kolkata & Delhi",
+    era: "contemporary",
+    forms: ["Novel", "Poetry", "Travel"],
+    knownFor:
+      "A Suitable Boy — one of the longest novels published in English in a single volume.",
+    bio: "Seth wrote a novel entirely in sonnets, then a vast realist family saga set in the India of the first general election, then a memoir of his German-Jewish aunt and Indian uncle. Almost nothing he has written resembles anything else he has written.",
+    works: [
+      { title: "The Golden Gate", year: "1986", note: "A novel in sonnets" },
+      { title: "A Suitable Boy", year: "1993" },
+      { title: "An Equal Music", year: "1999" },
+      { title: "Two Lives", year: "2005" },
+    ],
+    honours: [
+      "Sahitya Akademi Award (1988)",
+      "Padma Shri (2007)",
+      "WH Smith Literary Award (1994)",
+    ],
+    honourKeys: ["sahitya-akademi", "padma"],
+  },
+  {
+    slug: "geetanjali-shree",
+    name: "Geetanjali Shree",
+    nativeName: "गीतांजलि श्री",
+    epithet: "The first Booker for an Indian language",
+    lifespan: "b. 1957",
+    sortYear: 1957,
+    language: "Hindi",
+    languages: ["Hindi"],
+    region: "Uttar Pradesh & Delhi",
+    era: "contemporary",
+    forms: ["Novel", "Short story"],
+    knownFor:
+      "Ret Samadhi — Tomb of Sand — the first book translated from any Indian language to win the International Booker.",
+    bio: "Shree's novel follows an eighty-year-old woman who takes to her bed after her husband's death, gets up, and crosses into Pakistan — told in a Hindi so playful that even the border gets a voice. Daisy Rockwell's translation took the International Booker in 2022.",
+    works: [
+      { title: "Ret Samadhi", year: "2018", note: "Tomb of Sand" },
+      { title: "Mai", year: "1993" },
+      { title: "Khali Jagah", year: "2006" },
+    ],
+    honours: [
+      "International Booker Prize (2022)",
+      "Indu Sharma Katha Samman (2001)",
+    ],
+    honourKeys: ["booker"],
+    featured: true,
+  },
+  {
+    slug: "arundhati-roy",
+    name: "Arundhati Roy",
+    epithet: "Novelist and dissenter",
+    lifespan: "b. 1961",
+    sortYear: 1961,
+    language: "English",
+    languages: ["English"],
+    region: "Kerala & Delhi",
+    era: "contemporary",
+    forms: ["Novel", "Essay"],
+    knownFor:
+      "The God of Small Things — the Booker Prize in 1997, for a first novel about twins in Ayemenem.",
+    bio: "Roy won the Booker with her first book and then spent twenty years writing essays against dams, nuclear weapons and the Indian state before publishing a second novel. Both careers are the same career, conducted in prose of unusual density.",
+    works: [
+      { title: "The God of Small Things", year: "1997" },
+      { title: "The Ministry of Utmost Happiness", year: "2017" },
+      { title: "The Algebra of Infinite Justice", year: "2001" },
+    ],
+    honours: [
+      "Booker Prize (1997)",
+      "Sydney Peace Prize (2004)",
+      "PEN Pinter Prize (2024)",
+    ],
+    honourKeys: ["booker"],
+    featured: true,
+  },
+];

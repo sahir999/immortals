@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paper and ink: warm parchment, deep brown-black type, saffron accent. */
+  --background: #f8f4ec;
+  --surface: #fffdf9;
+  --surface-muted: #f1ebdd;
+  --foreground: #1b1814;
+  --muted: #6d6357;
+  --line: #e3d9c6;
+  --accent: #a8410f;
+  --accent-soft: #f6e6d6;
+  --deep: #1d3a56;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-deep: var(--deep);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-literata);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #12100d;
+    --surface: #1a1713;
+    --surface-muted: #221e19;
+    --foreground: #f0e9dd;
+    --muted: #a2988a;
+    --line: #322c24;
+    --accent: #e08b4c;
+    --accent-soft: #2a2018;
+    --deep: #9bc0e0;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Hairline rule used to separate sections without a hard border. */
+.rule-fade {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--line) 20%,
+    var(--line) 80%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
